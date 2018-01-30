@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    width: 630px;
+    margin: 0 auto;
+    color: blue;
+    background: #fff;
+    padding: 7px;
+    border: 8px solid #000;
+}
+
+.border-container {
+    border: 2px dashed #000;
+}
+
+h1 {
+    font-family: "Nunito", sans-serif;
+    text-align: center;
+    margin: 60px 60px 0 60px;
+    font-size: 60px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.divider {
+    height: 100px;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0 0 40px 130px;
+    width: 593px;
+}
+
+ul li {
+    margin: 12px 0;
+}
+
+ul li span.name {
+    display: inline-block;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-family: "Times New Roman", sans-serif;
+    margin-right: 20px;
+}
+
+.description {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-style: italic;
+    text-transform: none;
+    color: #6f7273;
+    font-size: 16pt;
+    margin: 16px auto;
+}
+
+ul li span.description {
+    text-align: left;
+    font-size: 15px;
+    margin: 12px 0;
+}
+
+.price {
+    font-family: "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    margin: 20pt auto;
+    font-size: 20pt;
+}
+
+ul li span.price {
+    text-align: left;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 20px;
+}
+
+.home-link {
+    text-align: center;
+    display: block;
+    margin: 20pt auto;
+}

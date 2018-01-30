@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <title>EDIT: Restaurant</title>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/script.js"></script>
+</head>
+<body>
+    <div class="main-container">
+      <h1>Edit</h1>
+      <img src="http://blackcommerce.org/eagleawards/wp-content/uploads/2014/03/divider-51.png" class="divider">  
+      <form class="edit" id="beer">
+        <div>
+          <label for="name">
+            Name
+          </label>
+          <input id="name" name="name" type="text" value={{restaurantData.name}}>
+        </div>
+        
+        </div>
+        <input id="beer-id" type="hidden" value="{{beerData.id}}">
+        <input type="submit" value="submit">
+        <a class="home-link" href="/beers">BACK TO BEER LIST</a>
+      </form>
+    </div>
+</body>
+</html>
