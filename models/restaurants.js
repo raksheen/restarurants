@@ -9,7 +9,8 @@ places.allPlaces = (req, res, next) => {
 	axios({
 		headers: { "user-key": "bcd9534c24103ccbe87c49c74e71851a" },
 		url:
-			"https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone",
+			"https://developers.zomato.com/api/v2.1/search?entity_type=zone&q=pizza",
+		// "https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone",
 		// "https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=55",
 		method: "get"
 	})
@@ -31,8 +32,9 @@ places.showPlaces = (req, res, next) => {
 	axios({
 		headers: { "user-key": "bcd9534c24103ccbe87c49c74e71851a" },
 		url:
-			"developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone",
+			"https://developers.zomato.com/api/v2.1/search?entity_type=zone&q=pizza",
 
+		// "developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone",
 		// "https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=55",
 		method: "get"
 	})
@@ -53,7 +55,7 @@ places.create = (req, res, next) => {
 	db
 		.one("INSERT INTO places (name) VALUES ($1) RETURNING id;", [req.body.name])
 		.then(data => {
-			res.locals.newRestaurantId = response.data.id;
+			res.locals.newRestaurantId = data;
 			next();
 		})
 		.catch(error => {
@@ -62,31 +64,57 @@ places.create = (req, res, next) => {
 		});
 };
 
-// places.destroy = (req, res, next) => {
-// 	db
-// 		.none("DELETE FROM places WHERE id = $1", [req.params.restaurantId])
-// 		.then(() => {
-// 			next();
-// 		})
-// 		.catch(error => {
-// 			console.log("error encountered in places.destroy. error:", error);
-// 			next(error);
-// 		});
-// };
+places.customPlaces = (req, res, next) => {
+	db
+		.many("SELECT * FROM places;")
+		.then(data => {
+			res.locals.myRestaurants = data;
+			next();
+		})
+		.catch(error => {
+			console.log("error encountered in places.customPlaces. Error:", error);
+			next(error);
+		});
+};
+places.destroy = (req, res, next) => {
+	db
+		.none("DELETE FROM places WHERE id = $1", [req.params.id])
+		.then(() => {
+			next();
+		})
+		.catch(error => {
+			console.log("error encountered in places.destroy. error:", error);
+			next(error);
+		});
+};
 
-// places.update = (req, res, next) => {
-// 	db
-// 		.one("UPDATE places SET name = $1 WHERE id = $6 RETURNING *;", [
-// 			req.body.name
-// 		])
-// 		.then(data => {
-// 			res.locals.updatedRestaurantData = response.data;
-// 			next();
-// 		})
-// 		.catch(error => {
-// 			console.log("error encountered in places.update. Error:", error);
-// 			next(error);
-// 		});
-// };
+places.update = (req, res, next) => {
+	db
+		.one("UPDATE places SET name = $1 WHERE id = $2 RETURNING id;", [
+			req.body.name,
+			req.body.id
+		])
+		.then(data => {
+			res.locals.restaurantData = data;
+			next();
+		})
+		.catch(error => {
+			console.log("error encountered in places.update. Error:", error);
+			next(error);
+		});
+};
+
+places.findById = (req, res, next) => {
+	db
+		.one("SELECT * FROM places WHERE id = $1;", [req.params.id])
+		.then(data => {
+			res.locals.restaurantData = data;
+			next();
+		})
+		.catch(error => {
+			console.log("error in places.findById. Error:", error);
+			next(error);
+		});
+};
 
 module.exports = places;

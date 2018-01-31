@@ -9,7 +9,6 @@ const cn = {
   // serving our HTTP responses from
   port: 5432,
   database: "project2db",
-  // change this to your user name
   // (type 'whoami' into the terminal if there's any doubt)
   user: "student_15"
 };

@@ -2,52 +2,62 @@ const express = require("express");
 const router = express();
 const Rest = require("../models/restaurants.js");
 
-router.get("/", Rest.allPlaces, (req, res) => {
-  // console.log("hitting trains/", {
+router.get("/", Rest.allPlaces, Rest.customPlaces, (req, res) => {
   //   allRestaurantsData: res.locals.allRestaurantsData.restaurants
   // });
   res.render("restaurants", {
-    allRestaurantsData: res.locals.allRestaurantsData
+    allRestaurantsData: res.locals.allRestaurantsData,
+    myRestaurants: res.locals.myRestaurants
   });
   // res.send("route working");
 });
 
-//is this needed?:
-
-// router.get("/:name", Rest.showPlaces, (req, res) => {
-//   res.render("restaurant", res.locals.RestaurantData);
-
-//   // res.render("train", res.locals.trainData);
-// });
+// router.get("/favorites", Rest.customPlaces, (req, res) => {
+router.get("/favorites", Rest.customPlaces, (req, res) => {
+  console.log(res.locals.myRestaurants);
+  // res.render(res.locals.myRestaurants);
+  res.json(res.locals.myRestaurants);
+  res.render();
+});
 
 //CRUD//
 
-router.get("/:new", (req, res) => {
+//create:
+
+router.get("/new", (req, res) => {
+  //maybe: /:new
   console.log("in new function");
   res.render("restaurant-new");
 });
 
 router.post("/", Rest.create, (req, res, next) => {
-  res.json({ id: res.locals.newRestaurant, body: req.body });
+  // router.post("/new", Rest.create, (req, res, next) => {
+  console.log("rest.create working");
+  res.redirect("/");
 });
 
 router.get("/:restaurant-edit", Rest.create, (req, res, next) => {
   res.render("restaurant-edit");
 });
 
-// router.post("/", Rest.create, (req, res, next) => {
-//   res.json({ id: res.locals.newRestaurant, body: req.body });
+//Update or Edit:
+
+router.get("/:id/edit", Rest.findById, (req, res, next) => {
+  res.render("restaurant-edit", res.locals.restaurantData);
+});
+
+router.put("/:id/edit", Rest.update, (req, res, next) => {
+  res.json(res.locals.myRestaurants);
+});
+
+// router.put("/favorites/:id", Rest.update, (req, res, next) => {
+//   res.json(res.locals.restaurantData);
 // });
 
-// router.get("/:restaurantId/edit", Rest.findById, (req, res, next) => {
-//   res.render("restaurant-edit", res.locals.RestaurantData);
-// });
+//Delete or Destroy
 
-// router.delete("/:restaurants", Rest.destroy, (req, res, next) => {
-//   res.json({ id: req.params.restaurant });
-// });
+router.delete("/:id", Rest.destroy, (req, res, next) => {
+  res.json({ id: req.params.id });
+});
 
-// router.put("/:restaurants", Rest.update, (req, res, next) => {
-//   res.json(res.locals.updatedrestaurantData);
-// });
 module.exports = router;

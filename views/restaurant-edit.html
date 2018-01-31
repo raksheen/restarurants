@@ -11,20 +11,27 @@
 </head>
 <body>
     <div class="main-container">
-      <h1>Edit</h1>
+      <h2>Edit</h2>
+      <h1>{{restaurantData.name}}</h1>
       <img src="http://blackcommerce.org/eagleawards/wp-content/uploads/2014/03/divider-51.png" class="divider">  
-      <form class="edit" id="beer">
+      <form class="edit" id="edit-restaurants">
         <div>
           <label for="name">
-            Name
+            Update Name:
           </label>
           <input id="name" name="name" type="text" value={{restaurantData.name}}>
+           <div class = "submit-and-delete">
+        <input id="restaurant-id" type="hidden" name= "id" value="{{restaurantData.id}}">
+        <input id= "edit-restaurants" type="submit" value="update">
+<!-- need a delete button, but not sure what input type  -->
+        <input id = "delete" type = "button" value = "delete">
+      </div>
         </div>
         
         </div>
-        <input id="beer-id" type="hidden" value="{{beerData.id}}">
-        <input type="submit" value="submit">
-        <a class="home-link" href="/beers">BACK TO BEER LIST</a>
+       
+
+        <a class="home-link" href="/restaurants">BACK TO Restaurants list</a>
       </form>
     </div>
 </body>

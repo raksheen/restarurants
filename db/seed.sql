@@ -1,5 +1,5 @@
-INSERT INTO places (name) VALUES ('Michelob Ultra'),('Heineken'),('Blue Moon
-'),('Stella Artois');
+INSERT INTO places (name) VALUES ('Artichoke Pizza'),('Champion Pizza'),('Joes Pizza
+'),('Grimaldis Pizza');
 
 
 

@@ -3,32 +3,54 @@
 <head>
   <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
-    <!-- <script src="/js/jquery.js"></script>
-    <script src="/js/script.js"></script> -->
-    <title>All Restaurant Results</title>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/script.js"></script>
+    <title>Restaurants in Flatiron</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 
 <body>
-hey
     <div class="main-container">
         <div class="border-container">
-            <h1>Restaurants</h1>
+            <h1>Restaurants in Flatiron</h1>
             <a href = "restaurants/new">Add Restaurant</a>
             <ul>
                 {{#allRestaurantsData.restaurants}}
                     <li>
                         <span class="name">
-                        <a href="{{restaurant.url}}">
-                          <!-- <a href="restaurant/{{id}}"> -->
+                        <!-- <a href="">{{restaurant.name}}</a> -->
+                        <!-- <a href="{{restaurant.url}}">{{restaurant.name}}</a> -->
+                         
+                          <a href="restaurants/{{id}}/edit">
                             {{restaurant.name}}
                           </a>
+
                         </span>
+                          <!-- <form method = "post" action= "/restaurants/new">  
+                              <input name = "restaurantId" type = hidden value = "{{allRestaurantsData.id}}">
+                               <input name = "name" type = hidden value = "{{restaurant.name}}">
+                               <button type = "submit">Save</button>
+                          </form>    --> 
                     </li>
                 {{/allRestaurantsData.restaurants}}
+              </ul>
+              
+              <ul>
+                {{#myRestaurants}}
+                <li>
+                        <span class="name">
+                        <a href="restaurants/{{id}}/edit">
+                            {{name}}
+                          </a>
+                        </span>  
+                </li>
+                {{/myRestaurants}}
+                
             </ul>
         </div>
     </div>  
+    
+    
 </body>
 </html>

@@ -6,28 +6,21 @@
     <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
      <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
-    <title>Individual Restaurant</title>
+    <title>{{name}}</title>
 </head>
 
 <body>
     <div class="main-container">
-        <div class="border-container">
-            <h1>hey</h1>
-         <!--    {{#forms}}
-                {{name}}
-            {{/forms}}
-            </h1>
-            <ul>
-                {{#abilities}}
-                    <li>
-                        <span class="name">
-                            {{name}}
-                        </span>
-                    </li>
-                {{/abilities}} -->
-            <!-- </ul> -->
+    <div class="border-container">
+        <h1>{{name}}</h1>
+        <div style="text-align: center">
+          <a class="home-link" href="/restaurants/favorites/{{id}}/edit">Edit</a>
+          <button id="delete">Delete</button>
         </div>
+        <input id="restaurant-id" type="hidden" value="{{restaurantData.id}}">
+        <a class="home-link" href="/restaurants">back to restaurant list</a>
     </div>
+  </div>
 </body>
 
 </html>
