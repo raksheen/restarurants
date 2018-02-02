@@ -2,45 +2,52 @@
 <html>
 <head>
   <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Rammetto+One">
+    <!-- rel='stylesheet' type='text/css'> -->
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
-    <title>Restaurants in Flatiron</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pizza in Flatiron</title>
+
 </head>
 
 <body>
     <div class="main-container">
-        <div class="border-container">
-            <h1>Restaurants in Flatiron</h1>
-            <a href = "restaurants/new">Add Restaurant</a>
+        
+          <div class = "header">
+            <h1 class = "header-text">Pizza in Flatiron</h1>
+           </div>    
+            <div class = "new-button"><a href = "restaurants/new" class = add-new>Add A Restaurant</a></div>
+            {{time}}
+
+         
+            <div class="border-container">
+
+            <h2>Restaurants:</h2>    
             <ul>
                 {{#allRestaurantsData.restaurants}}
                     <li>
                         <span class="name">
                         <!-- <a href="">{{restaurant.name}}</a> -->
-                        <!-- <a href="{{restaurant.url}}">{{restaurant.name}}</a> -->
+                        <a href="{{restaurant.url}}" style="text-decoration: none" class="each-place">{{restaurant.name}}</a>
                          
-                          <a href="restaurants/{{id}}/edit">
+                          <!-- <a href="restaurants/{{id}}/edit" style = "text-decoration: none" class="each-place">
                             {{restaurant.name}}
-                          </a>
+                          </a> -->
 
                         </span>
-                          <!-- <form method = "post" action= "/restaurants/new">  
-                              <input name = "restaurantId" type = hidden value = "{{allRestaurantsData.id}}">
-                               <input name = "name" type = hidden value = "{{restaurant.name}}">
-                               <button type = "submit">Save</button>
-                          </form>    --> 
                     </li>
                 {{/allRestaurantsData.restaurants}}
               </ul>
-              
+
+              <h2>User Submitted: </h2>
+
               <ul>
-                {{#myRestaurants}}
-                <li>
+              
+{{#myRestaurants}}                <li>
                         <span class="name">
-                        <a href="restaurants/{{id}}/edit">
+                        <a href="restaurants/{{id}}/edit" class = "each-place">
                             {{name}}
                           </a>
                         </span>  

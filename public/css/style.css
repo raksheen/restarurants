@@ -1,87 +1,91 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Rammetto One";
+}
+.main-container {
+    background-image: url("/images/texture.jpeg");
 }
 
-.main-container {
-    width: 630px;
-    margin: 0 auto;
-    color: blue;
+/*.main-container {*/
+/*    width: 630px;
+*/
+/*margin: 0 auto;
+    color: black;
     background: #fff;
-    padding: 7px;
-    border: 8px solid #000;
-}
+    background-color: #c45d40;*/
+/*    padding: 7px;
+*/ /*border: 8px solid #000;*/
+/*}*/
 
 .border-container {
-    border: 2px dashed #000;
+    text-align: center;
 }
-
-h1 {
-    font-family: "Nunito", sans-serif;
+.header {
+    background-image: url("/images/pepperoni.jpg");
+    /*    background-repeat: no-repeat;
+*/
+    height: 130px;
+    width: 100%;
+    font-family: "Rammetto One";
+    padding: 0;
+}
+.header-text {
+    font-family: "Rammetto One";
     text-align: center;
     margin: 60px 60px 0 60px;
     font-size: 60px;
     text-transform: uppercase;
-    color: #000;
+    color: black;
+    text-shadow: 2px;
+    margin-top: 0px;
 }
 
-.divider {
-    height: 100px;
-    display: block;
-    width: 80%;
-    margin: 0 auto;
+.add-new {
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    font-family: "Rammetto One";
+}
+.new-button {
+    /*    width: 100px;
+*/
+    font-family: "Rammetto One";
 }
 
+.each-place {
+    border: 2px solid black;
+    margin: 5px;
+    border-radius: 8px;
+    padding: 5px;
+}
+#new-restaurant {
+    text-align: center;
+    padding-left: 30%;
+    background-image: url("/images/texture.jpeg");
+}
 ul {
     list-style-type: none;
     margin: 0 0 40px 130px;
-    width: 593px;
+    font-family: "Rammetto One";
+    /*    width: 593px;
+*/
+    text-decoration: none;
 }
 
 ul li {
     margin: 12px 0;
+    padding: 5px;
+    font-family: "Rammetto One";
+    text-decoration: none;
 }
 
 ul li span.name {
     display: inline-block;
     font-size: 25px;
-    text-transform: uppercase;
-    font-family: "Times New Roman", sans-serif;
+    /*    text-transform: uppercase;
+*/
+    font-family: "Rammetto One";
     margin-right: 20px;
-}
-
-.description {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    font-style: italic;
-    text-transform: none;
-    color: #6f7273;
-    font-size: 16pt;
-    margin: 16px auto;
-}
-
-ul li span.description {
-    text-align: left;
-    font-size: 15px;
-    margin: 12px 0;
-}
-
-.price {
-    font-family: "Helvetica", "Arial", sans-serif;
-    text-align: center;
-    margin: 20pt auto;
-    font-size: 20pt;
-}
-
-ul li span.price {
-    text-align: left;
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 20px;
-}
-
-.home-link {
-    text-align: center;
-    display: block;
-    margin: 20pt auto;
 }

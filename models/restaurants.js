@@ -4,7 +4,7 @@ const db = require("../db/index.js");
 // const Restaurants = {};
 const places = {};
 
-// fetch all the rest data
+// fetch all the rest data from API:
 places.allPlaces = (req, res, next) => {
 	axios({
 		headers: { "user-key": "bcd9534c24103ccbe87c49c74e71851a" },
@@ -26,7 +26,7 @@ places.allPlaces = (req, res, next) => {
 		});
 };
 
-// fetch a single restaurant:
+// show
 places.showPlaces = (req, res, next) => {
 	const name = req.params.name;
 	axios({
@@ -51,11 +51,11 @@ places.showPlaces = (req, res, next) => {
 //// CRUD ////
 
 places.create = (req, res, next) => {
-	console.log(req.body);
+	console.log("in create function in model " + req.body.name);
 	db
 		.one("INSERT INTO places (name) VALUES ($1) RETURNING id;", [req.body.name])
 		.then(data => {
-			res.locals.newRestaurantId = data;
+			res.locals.newRestaurantId = data.id;
 			next();
 		})
 		.catch(error => {
@@ -63,6 +63,59 @@ places.create = (req, res, next) => {
 			next(error);
 		});
 };
+
+places.commentCreate = (req, res, next) => {
+	// console.log("commentCreate model is workin!", data.id);
+	console.log(req.body);
+	db
+		.one(
+			"INSERT INTO comments (rest_id, comment) VALUES ($1, $2) RETURNING id;",
+			[req.body.id, req.body.comment]
+		)
+		.then(data => {
+			res.locals.newComment = data.id;
+			console.log("commentCreate model is workin!", data.id);
+			next();
+		})
+		.catch(error => {
+			console.log("error encountered in places.create. Error:", error);
+			next(error);
+		});
+};
+
+places.combined = (req, res, next) => {
+	const id = req.params.id;
+	db
+		.manyOrNone("SELECT * FROM comments WHERE commments.rest_id = ${id}", {
+			id: id
+		})
+		.then(data => {
+			res.locals.myRestaurants = data;
+			next();
+		})
+		.catch(err => {});
+};
+
+// places.commentCreate = (req, res, next) => {
+// 	console.log("----------------------");
+// 	console.log("in restaurantsModel.makeComment. req.body:", req.params);
+
+// 	const res_id = req.params.id;
+// 	const comment = req.body.comment;
+// 	db
+// 		.one(
+// 			"INSERT INTO comments (res_id, comment, author) VALUES ($1, $2, $3) RETURNING id;",
+// 			[res_id, comment]
+// 		)
+// 		.then(result => {
+// 			res.locals.comment = result;
+// 			next();
+// 		})
+// 		.catch(err => {
+// 			console.log("Error encountered in places.commentCreate. error:", err);
+// 			next(err);
+// 		});
+// };
 
 places.customPlaces = (req, res, next) => {
 	db

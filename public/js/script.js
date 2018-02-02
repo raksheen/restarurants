@@ -1,5 +1,7 @@
-//ajax for put request
+console.log("script.js is connected");
 
+//ajax for put request
+//EDIT/UPDATE:
 $(document).ready(function() {
   // selecting edit form
   $("#edit-restaurants").submit(function(e) {
@@ -12,6 +14,9 @@ $(document).ready(function() {
     const id = $("#restaurant-id").val();
 
     console.log(`Form data: ${data}`);
+    console.log(
+      "for some reason I am working when i am submitting a comment!!!!!!"
+    );
 
     // PUT request to /restaurant/:restaurantId to add a restaurant
     $.ajax({
@@ -23,6 +28,7 @@ $(document).ready(function() {
         console.log("response ", data);
         // redirecting to the restaurant's show page on success
         window.location.href = `/restaurants/${data.id}`;
+        // window.location.href = `/restaurants/${data.id}`;
       },
       error: function(xhr, status, error) {
         // add error handler
@@ -71,7 +77,31 @@ $(document).ready(function() {
       type: "POST",
       success: function(data) {
         console.log("data received ", data);
-        window.location.href = `/restaurants/${data.id}`;
+        window.location.href = `/restaurants`;
+      },
+      error: function(xhr, status, error) {
+        // add error handler
+      }
+    });
+  });
+  // });
+
+  //creating a comment
+  $("#new-comment").submit(function(e) {
+    const id = $("#restaurant-id").val();
+    e.preventDefault();
+    console.log("i was clicked");
+    const data = $(this).serialize();
+    console.log("this is the data shitttttttt", data);
+    console.log("data ", data);
+    $.ajax({
+      url: `/restaurants/${id}`,
+      data: data,
+      type: "POST",
+      success: function(data) {
+        console.log("this is the data shitttttttt", data);
+        console.log("data received ", data);
+        // window.location.href = `/restaurants`;
       },
       error: function(xhr, status, error) {
         // add error handler
@@ -79,3 +109,23 @@ $(document).ready(function() {
     });
   });
 });
+
+//New Comment: try 2
+// $("#comment").click(function(e) {
+//   //create comment function
+//   // e.preventDefault();
+//   // const new_comment = $("#text_comment").val();
+//   // const res_id = $("#text_comment").data("res-id");
+//   // const data = { comment: new_comment };
+//   console.log("heyyyyyy");
+//   // $.ajax({
+//   //   url: `/restaurants/${id}/edit`, // Path
+//   //   type: "POST",
+//   //   data: data,
+//   //   success: function(data) {
+//   //     console.log("added", comment);
+//   //     window.location.href = `/restaurants/${data.id}`;
+//   //   },
+//   //   error: function(xhr, status, error) {}
+//   // });
+// });
